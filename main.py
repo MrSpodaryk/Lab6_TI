@@ -99,11 +99,11 @@ def is_message_broken(hamming_code):
     syndrome = [0 for i in range(4)]
     if calculate_z(hamming_code, 0) != hamming_code[0]:
         syndrome[3] = 1
-    elif calculate_z(hamming_code, 1) != hamming_code[1]:
+    if calculate_z(hamming_code, 1) != hamming_code[1]:
         syndrome[2] = 1
-    elif calculate_z(hamming_code, 2) != hamming_code[3]:
+    if calculate_z(hamming_code, 2) != hamming_code[3]:
         syndrome[1] = 1
-    elif calculate_z(hamming_code, 3) != hamming_code[7]:
+    if calculate_z(hamming_code, 3) != hamming_code[7]:
         syndrome[0] = 1
     if syndrome == [0, 0, 0, 0]:
         return False
@@ -119,3 +119,10 @@ print("message after coding == " + str(get_hamming_code(trim_message(int_to_bit(
 print("message after decoding == " + str(
     get_message_from_hamming_code(get_hamming_code(trim_message(int_to_bit(number))))))
 print("is message broken == " + str(is_message_broken(get_hamming_code(trim_message(int_to_bit(number))))))
+print()
+
+broken_message = [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0]
+print("broken message after coding == " + str(broken_message))
+print("broken message after decoding == " + str(
+    get_message_from_hamming_code(broken_message)))
+print("is message broken == " + str(is_message_broken(broken_message)))
